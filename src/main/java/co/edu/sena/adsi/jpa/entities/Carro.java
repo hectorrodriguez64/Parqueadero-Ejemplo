@@ -64,6 +64,10 @@ public class Carro implements Serializable {
         this.horaLlegada = horaLlegada;
     }
 
+    public Carro(String placa, int horaActual) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public Integer getId() {
         return id;
     }
@@ -87,6 +91,7 @@ public class Carro implements Serializable {
     public void setHoraLlegada(Date horaLlegada) {
         this.horaLlegada = horaLlegada;
     }
+    
 
     @Override
     public int hashCode() {
@@ -112,5 +117,9 @@ public class Carro implements Serializable {
     public String toString() {
         return "co.edu.sena.adsi.jpa.entities.Carro[ id=" + id + " ]";
     }
+
+ 
+
+   
     
 }

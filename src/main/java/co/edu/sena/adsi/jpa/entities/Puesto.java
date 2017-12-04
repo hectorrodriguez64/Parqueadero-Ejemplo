@@ -116,5 +116,15 @@ public class Puesto implements Serializable {
     public String toString() {
         return "co.edu.sena.adsi.jpa.entities.Puesto[ id=" + id + " ]";
     }
-    
+
+    public void parquearCarro(Carro carroEntrando) {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
+
+    public boolean puestoOcupado() {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
+
+   
+   
 }

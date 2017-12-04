@@ -6,7 +6,11 @@
 package co.edu.sena.adsi.rest.services;
 
 import co.edu.sena.adsi.jpa.entities.Carro;
+import co.edu.sena.adsi.jpa.entities.Parqueadero;
+import co.edu.sena.adsi.jpa.entities.Puesto;
 import co.edu.sena.adsi.jpa.sessions.CarroFacade;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
@@ -15,6 +19,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -25,21 +30,31 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class CarroREST {
+
     @EJB
     private CarroFacade carroEJB;
-    
+
     @GET
-    public List<Carro> findAll(){
+    public List<Carro> findAll() {
         return carroEJB.findAll();
     }
+
     @GET
     @Path("{id}")
     public Carro findBye(
-    @PathParam("nombre")String nombre){
+            @PathParam("nombre") String nombre) {
         return carroEJB.find(nombre);
     }
+
     @POST
-    public void create(Carro carro){
+    public void create(Carro carro)
+      {
         carroEJB.create(carro);
+        
+               
     }
+    
+     
+
+  
 }

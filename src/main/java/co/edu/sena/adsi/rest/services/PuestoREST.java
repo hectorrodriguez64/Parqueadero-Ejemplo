@@ -5,8 +5,13 @@
  */
 package co.edu.sena.adsi.rest.services;
 
+import co.edu.sena.adsi.jpa.entities.Carro;
+import co.edu.sena.adsi.jpa.entities.Parqueadero;
 import co.edu.sena.adsi.jpa.entities.Puesto;
+import co.edu.sena.adsi.jpa.sessions.CarroFacade;
 import co.edu.sena.adsi.jpa.sessions.PuestoFacade;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
@@ -41,9 +46,28 @@ public class PuestoREST {
     @POST
     public void create(Puesto puesto){
         puestoEJB.create(puesto);
+     
+    }   
+  
+    private Carro carro;
+        
+     public boolean puestoOcupado(){
+        return carro != null;
     }
     
+     
+    public void parquearCarro(Carro carros){
+        carro = carros;
+    }
+      
+    public void sacarCarro(){
+        carro = null;
+    }
+  
     
-    
-    
+    private int puesto;
+   
+    public int numeroPuesto(){
+        return puesto;
+    }
 }
