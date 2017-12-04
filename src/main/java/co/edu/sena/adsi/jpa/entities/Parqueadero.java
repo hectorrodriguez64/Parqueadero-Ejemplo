@@ -10,8 +10,6 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -35,13 +33,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Parqueadero.findByHoraActual", query = "SELECT p FROM Parqueadero p WHERE p.horaActual = :horaActual")
     , @NamedQuery(name = "Parqueadero.findByAbierto", query = "SELECT p FROM Parqueadero p WHERE p.abierto = :abierto")
     , @NamedQuery(name = "Parqueadero.findByCaja", query = "SELECT p FROM Parqueadero p WHERE p.caja = :caja")
-    , @NamedQuery(name = "Parqueadero.findByValorPagar", query = "SELECT p FROM Parqueadero p WHERE p.valorPagar = :valorPagar")})
+    , @NamedQuery(name = "Parqueadero.findByValorPagar", query = "SELECT p FROM Parqueadero p WHERE p.valorPagar = :valorPagar")
+    , @NamedQuery(name = "Parqueadero.findByPuestos", query = "SELECT p FROM Parqueadero p WHERE p.puestos = :puestos")})
 public class Parqueadero implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @NotNull
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
@@ -64,6 +63,8 @@ public class Parqueadero implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "valor_pagar")
     private Double valorPagar;
+    @Column(name = "puestos")
+    private Integer puestos;
 
     public Parqueadero() {
     }
@@ -126,6 +127,14 @@ public class Parqueadero implements Serializable {
 
     public void setValorPagar(Double valorPagar) {
         this.valorPagar = valorPagar;
+    }
+
+    public Integer getPuestos() {
+        return puestos;
+    }
+
+    public void setPuestos(Integer puestos) {
+        this.puestos = puestos;
     }
 
     @Override

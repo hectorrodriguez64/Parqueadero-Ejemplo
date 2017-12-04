@@ -7,6 +7,7 @@ package co.edu.sena.adsi.rest.services;
 
 import co.edu.sena.adsi.jpa.entities.Carro;
 import co.edu.sena.adsi.jpa.entities.Parqueadero;
+
 import co.edu.sena.adsi.jpa.sessions.ParqueaderoFacade;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -33,6 +34,8 @@ public class ParqueaderoREST {
     @EJB
     private ParqueaderoFacade parqueaderoEJB;
     
+
+    
     @GET
     public List<Parqueadero> findAll(){
         return parqueaderoEJB.findAll();
@@ -43,32 +46,44 @@ public class ParqueaderoREST {
     @PathParam("nombre")String nombre){
         return parqueaderoEJB.find(nombre);
     }
-      @POST
+    
+    @POST
     public void create(
-        @QueryParam("tarifa") double tarifa,
-        @QueryParam("horaActual") Date horaActual){
+        @QueryParam("tarifa") double tarifa)
+      {
         
         GsonBuilder gsonBuilder = new GsonBuilder();
         Gson gson = gsonBuilder.create();
         Parqueadero newParqueadero = new Parqueadero();
-        Carro newCarros = new Carro();
+        Carro newCarro = new Carro();
         
         try{
-           /** newCahorros.setRetirar(retirarValor(newUsuarios.getSaldoTotal(), saldo));
-            newCahorros.setConsignar(consignarValor(newUsuarios.getSaldoTotal(), saldo));
-            newCahorros.setSaldo(saldo);
-            newCahorros.setInteresMensual(interesMensual);
-            newCahorros.setIdUsuarios(newUsuarios);**/
+             newParqueadero.setValorPagar(pagarValor(tarifa));
+             newParqueadero.setCaja(newParqueadero.getCaja() + tarifa);
         }catch (Exception e) {
       
-        }        
-    }
+        }         
+      }
     
-
-        private double pagarValor(double valor, double saldoTotal ){
-        saldoTotal = saldoTotal + valor;
-        return saldoTotal;
+    
+    private int resta;
+    private int horaActual;
+    private int horaLlegada;
+    
+   
+        private double pagarValor(double tarifa){
+        tarifa = tarifaParcial() * restaHora() ;
+        return tarifa;        
+        }
+        
+        private double tarifaParcial(){
+            return 1200;
+        }
+        
+        public int restaHora(){
+            resta = horaActual - horaLlegada;
+            return resta;
+        }
         
         
-    }
 }
