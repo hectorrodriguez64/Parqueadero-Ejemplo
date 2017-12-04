@@ -5,8 +5,12 @@
  */
 package co.edu.sena.adsi.rest.services;
 
+import co.edu.sena.adsi.jpa.entities.Carro;
 import co.edu.sena.adsi.jpa.entities.Parqueadero;
 import co.edu.sena.adsi.jpa.sessions.ParqueaderoFacade;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
@@ -15,6 +19,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -38,8 +43,32 @@ public class ParqueaderoREST {
     @PathParam("nombre")String nombre){
         return parqueaderoEJB.find(nombre);
     }
-    @POST
-    public void create(Parqueadero parqueadero){
-        parqueaderoEJB.create(parqueadero);
+      @POST
+    public void create(
+        @QueryParam("tarifa") double tarifa,
+        @QueryParam("horaActual") Date horaActual){
+        
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        Gson gson = gsonBuilder.create();
+        Parqueadero newParqueadero = new Parqueadero();
+        Carro newCarros = new Carro();
+        
+        try{
+           /** newCahorros.setRetirar(retirarValor(newUsuarios.getSaldoTotal(), saldo));
+            newCahorros.setConsignar(consignarValor(newUsuarios.getSaldoTotal(), saldo));
+            newCahorros.setSaldo(saldo);
+            newCahorros.setInteresMensual(interesMensual);
+            newCahorros.setIdUsuarios(newUsuarios);**/
+        }catch (Exception e) {
+      
+        }        
+    }
+    
+
+        private double pagarValor(double valor, double saldoTotal ){
+        saldoTotal = saldoTotal + valor;
+        return saldoTotal;
+        
+        
     }
 }

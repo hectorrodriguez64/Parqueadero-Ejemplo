@@ -42,4 +42,8 @@ public class PuestoREST {
     public void create(Puesto puesto){
         puestoEJB.create(puesto);
     }
+    
+    
+    
+    
 }

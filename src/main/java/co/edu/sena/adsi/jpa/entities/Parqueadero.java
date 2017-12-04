@@ -34,7 +34,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Parqueadero.findByTarifa", query = "SELECT p FROM Parqueadero p WHERE p.tarifa = :tarifa")
     , @NamedQuery(name = "Parqueadero.findByHoraActual", query = "SELECT p FROM Parqueadero p WHERE p.horaActual = :horaActual")
     , @NamedQuery(name = "Parqueadero.findByAbierto", query = "SELECT p FROM Parqueadero p WHERE p.abierto = :abierto")
-    , @NamedQuery(name = "Parqueadero.findByCaja", query = "SELECT p FROM Parqueadero p WHERE p.caja = :caja")})
+    , @NamedQuery(name = "Parqueadero.findByCaja", query = "SELECT p FROM Parqueadero p WHERE p.caja = :caja")
+    , @NamedQuery(name = "Parqueadero.findByValorPagar", query = "SELECT p FROM Parqueadero p WHERE p.valorPagar = :valorPagar")})
 public class Parqueadero implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -60,6 +61,9 @@ public class Parqueadero implements Serializable {
     @NotNull
     @Column(name = "caja")
     private double caja;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "valor_pagar")
+    private Double valorPagar;
 
     public Parqueadero() {
     }
@@ -114,6 +118,14 @@ public class Parqueadero implements Serializable {
 
     public void setCaja(double caja) {
         this.caja = caja;
+    }
+
+    public Double getValorPagar() {
+        return valorPagar;
+    }
+
+    public void setValorPagar(Double valorPagar) {
+        this.valorPagar = valorPagar;
     }
 
     @Override
