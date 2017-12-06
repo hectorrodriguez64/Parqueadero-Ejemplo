@@ -64,9 +64,10 @@ public class ParqueaderoREST {
             newParqueadero.setCaja(newParqueadero.getCaja() + tarifa);
             newParqueadero.setPuestos(newParqueadero.getPuestos() - 1);
             newParqueadero.setAbierto(true);
-            newParqueadero.setTarifa(tarifaParcial());
+            //newParqueadero.setTarifa(tarifaParcial());
+            parqueaderoEJB.create(newParqueadero);
         } catch (Exception e) {
-
+           
         }
     }
     private int resta = 1;
@@ -104,7 +105,7 @@ public class ParqueaderoREST {
         // Buscar un puesto libre para el carro y agregarlo
         int numPuesto = 0;
         if (numPuesto != NOHAYPUESTO) {
-            Carro carroEntrando = new Carro(placa, horaActual);
+            Carro carroEntrando = new Carro();//placa, horaActual
             puestos[numPuesto].parquearCarro(carroEntrando);
         }
         return numPuesto;

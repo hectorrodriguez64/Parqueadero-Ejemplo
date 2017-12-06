@@ -11,6 +11,7 @@ import co.edu.sena.adsi.jpa.entities.Puesto;
 import co.edu.sena.adsi.jpa.sessions.CarroFacade;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
@@ -47,7 +48,10 @@ public class CarroREST {
     }
 
     @POST
-    public void create(Carro carro)
+    public void create(
+            @QueryParam("placa") String placa,
+            @QueryParam("horaLlegada") Date horaLlegada
+    )
       {
         carroEJB.create(carro);
         

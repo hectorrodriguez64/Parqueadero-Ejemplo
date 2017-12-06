@@ -64,10 +64,6 @@ public class Carro implements Serializable {
         this.horaLlegada = horaLlegada;
     }
 
-    public Carro(String placa, int horaActual) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public Integer getId() {
         return id;
     }
